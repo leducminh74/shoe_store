@@ -1,0 +1,182 @@
+<!-- Page Wrapper -->
+
+<div id="wrapper" class="">
+
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <app-topbar></app-topbar>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+          <h1 class="h3 mb-4 text-gray-800">Tổng quan </h1>
+        </div>
+
+
+
+
+        <!-- start table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Thống kê doanh thu</h4>
+          </div>
+
+          <div  class="card-body">
+            <div class="d-flex justify-content-between">
+              <mat-form-field style="width: 250px" appearance="outline">
+                <mat-label>Chọn năm</mat-label>
+                <mat-select (selectionChange)="loadRevenue($event)">
+                  <mat-option [value]="'2023'">2023</mat-option>
+                  <mat-option [value]="'2022'">2022</mat-option>
+                  <mat-option [value]="'2021'">2021</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button type="button"  class="w-auto h-auto" (click)="download()">Tải xuống chi tiết doanh thu</button>
+
+            </div>
+
+            <div class="card-title">
+              <h3>Tổng doanh thu năm {{yearSelected}} <br>  <b >{{totalRevenue | currency:"VND":"symbol"}}</b></h3>
+            </div>
+            <div class="table-responsive">
+              <div>
+                <canvas baseChart class="chart"
+                        [data]="barChartData"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [type]="barChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+
+                </canvas>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- end table -->
+
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Thống kê tài khoản (Tổng {{totalAccount}} tài khoản)</h4>
+          </div>
+
+
+          <div class="card-body">
+            <div>
+              <canvas baseChart class="chart"
+                      [data]="pieChartData"
+                      [type]="pieChartType"
+                      [options]="pieChartOptions"
+                      [plugins]="pieChartPlugins">
+              </canvas>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Thống kê đơn hàng (Tổng {{totalOrder}} đơn hàng)</h4>
+          </div>
+
+
+          <div class="card-body">
+            <div>
+              <canvas baseChart class="chart"
+                      [data]="pieChart2Data"
+                      [type]="pieChartType"
+                      [options]="pieChart2Options"
+                      [plugins]="pieChartPlugins">
+              </canvas>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" routerLink="/login">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Edit modal-->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form style="margin: 0" action="editProduct" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Product</h4>
+        </div>
+        <div class="modal-body">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success save-btn" >Save</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!--//-->
+
+
+<!--//-->
+
+

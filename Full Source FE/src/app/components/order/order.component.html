@@ -1,0 +1,64 @@
+<app-header></app-header>
+<section class="order">
+  <div class="container">
+    <div class="title">
+      <h2>Thủ tục thanh toán</h2>
+    </div>
+    <div class="d-flex">
+      <form action="" method="" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="d-flex">
+        <div class="form-input" style="width: 60%">
+          <mat-form-field style="padding: 0 10px; margin-top: 10px"  class="full-width" appearance="outline" >
+            <mat-label >Họ và tên</mat-label>
+            <input matInput placeholder="Input here..." formControlName="fullName" required>
+            <mat-error *ngIf="checkoutForm.controls['fullName'].dirty && checkoutForm.hasError('required','fullName')">Vui lòng nhập họ và tên</mat-error>
+          </mat-form-field>
+          <mat-form-field style="padding: 0 10px"  class="full-width" appearance="outline" >
+            <mat-label >Địa chỉ</mat-label>
+            <input matInput placeholder="Input here..." formControlName="address" required>
+            <mat-error *ngIf="checkoutForm.controls['address'].dirty && checkoutForm.hasError('required','address')">Vui lòng nhập địa chỉ</mat-error>
+          </mat-form-field>
+          <mat-form-field style="padding: 0 10px"  class="full-width" appearance="outline" >
+            <mat-label >Số điện thoại</mat-label>
+            <input matInput placeholder="Input here..." formControlName="phoneNumber" required>
+            <mat-error *ngIf="checkoutForm.controls['phoneNumber'].dirty && checkoutForm.hasError('required','phoneNumber')">Vui lòng nhập số điện thoại</mat-error>
+          </mat-form-field>
+
+        </div>
+      <div class="Yorder">
+        <table>
+          <tr>
+            <th colspan="4">Đơn hàng của bạn</th>
+          </tr>
+          <tr *ngFor="let item of cart.items">
+            <td>{{item.product.name}}</td>
+            <td><img style="width: 40px" [src]="'http://localhost:9999/img/'+item.product.img" [alt]="item.product.name"></td>
+            <td>x{{item.quantity}}</td>
+            <td>{{item.price | currency:"VND":"symbol"}}</td>
+          </tr>
+          <tr>
+            <td>Tổng giá</td>
+            <td></td>
+            <td></td>
+            <td>{{cart.totalPrice | currency:"VND":"symbol"}}</td>
+          </tr>
+          <tr>
+            <td>Vận chuyển</td>
+            <td></td>
+            <td></td>
+            <td>Miễn phí vận chuyển</td>
+          </tr>
+        </table><br>
+
+        <div *ngFor="let p of payments">
+          <input formControlName="paymentId" type="radio" name="paymentId" value="{{p.id}}"> {{p.name}}
+        </div>
+
+
+        <button  type="submit">Đặt hàng</button>
+      </div><!-- Yorder -->
+      </form>
+
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

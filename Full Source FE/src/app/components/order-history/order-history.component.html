@@ -1,0 +1,50 @@
+<app-header></app-header>
+<div class="container">
+  <div class="text-center mt-118px mb-4">
+    <h1>Lịch sử đặt hàng</h1>
+  </div>
+  <div class="main-content">
+    <div class="order-null text-center" *ngIf="listOrder == null">
+      <mat-card>
+        <mat-card-title>Bạn chưa đặt đơn hàng nào!!</mat-card-title>
+        <mat-card-content><button routerLink="/menu" class="btn btn-primary w-auto mt-5 p-3">Tiếp tục xem sản phẩm</button></mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngIf="listOrder != null">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th class="text-center" scope="col">#</th>
+          <th class="text-center" scope="col">Mã đơn hàng</th>
+          <th class="text-center" scope="col">Thanh toán</th>
+          <th class="text-center" scope="col">Tổng tiền</th>
+          <th class="text-center" scope="col">Trạng thái</th>
+          <th class="text-center" scope="col">Chi tiết</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of listOrder,let i = index" class="{{order.status.id == 5?'table-active':''}}">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-center">{{order.id}}</td>
+          <td class="text-center">{{order.payment.name}}</td>
+          <td class="text-center">{{order.total | currency:"VND":"symbol"}}</td>
+          <td class="text-center">{{order.status.name}}</td>
+          <td class="text-center">
+            <button mat-menu-item (click)="getAllOrderDetailByOrder(order.id)">
+              <mat-icon>info</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<app-footer></app-footer>

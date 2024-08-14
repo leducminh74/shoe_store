@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="container">
+  <div class="text-center mt-118px mb-4">
+    <h1>Danh sách yêu thích</h1>
+  </div>
+  <div class="main-content">
+    <div class="order-null text-center" *ngIf="listFavorite == null || listFavorite.length == 0">
+      <mat-card>
+        <mat-card-title>Bạn chưa có sản phẩm yêu thích nào!!</mat-card-title>
+        <mat-card-content><button routerLink="/menu" class="btn btn-primary w-auto mt-5 p-3">Tiếp tục xem sản phẩm</button></mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngIf="listFavorite != null && listFavorite.length > 0">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th class="text-center" scope="col">#</th>
+          <th class="text-center" scope="col">Tên sản phẩm</th>
+          <th class="text-center" scope="col">Thương hiệu</th>
+          <th class="text-center" scope="col">Màu</th>
+          <th class="text-center" scope="col">Size</th>
+          <th class="text-center" scope="col">Giá</th>
+          <th class="text-center" scope="col">Trạng thái</th>
+          <th style="width: 6%" class="text-center" scope="col">Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of listFavorite,let i = index" class="{{p.quantity <= 0 ? 'table-active':''}}">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-center"><a routerLink="/details/{{p.id}}/{{p.category.id}}">{{p.name}}</a></td>
+          <td class="text-center">{{p.category.name}}</td>
+          <td class="text-center">{{p.color.color}}</td>
+          <td class="text-center">{{p.size.size}}</td>
+          <td class="text-center">{{p.sellPrice | currency:"VND":"symbol"}}</td>
+          <td class="text-center" *ngIf="p.quantity > 0">Còn sản phẩm</td>
+          <td class="text-center" *ngIf="p.quantity <= 0">Tạm hết sản phẩm</td>
+
+          <td class="text-center d-flex">
+            <button mat-menu-item (click)="removeProductInFavoriteList(p.id)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <button *ngIf="p.quantity > 0"  (click)="addToCart(p)" mat-menu-item>
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button disabled *ngIf="p.quantity <= 0"  mat-menu-item>
+              <mat-icon >add_shopping_cart</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<app-footer></app-footer>

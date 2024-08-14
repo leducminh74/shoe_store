@@ -1,0 +1,66 @@
+<app-header></app-header>
+<app-slider></app-slider>
+<section>
+  <h3 class="sub-heading"> Details </h3>
+  <h1 class="heading"> {{product.name}} </h1>
+
+  <div class="container detail-page">
+    <img [src]="'http://localhost:9999/img/'+product.img" [alt]="product.name" >
+    <form  (ngSubmit)="addToCart()">
+      <div class="details">
+        <div class="name">
+          <mat-card-title>{{product.name}}</mat-card-title>
+        </div>
+        <div class="description">
+          <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+        </div>
+        <div>
+          <mat-label><b>Thương hiệu: </b></mat-label>
+          <div style="display: inline-block" class="tag-f" >
+            <span>{{product.category.name}}</span>
+          </div>
+        </div>
+
+        <div >
+          <mat-label><b>Màu sắc</b></mat-label>
+          <br>
+          <mat-checkbox (click)="$event.preventDefault()" checked class="example-margin" [value]="product.color.id">{{product.color.color}}</mat-checkbox>
+        </div>
+        <div >
+          <mat-label><b>Size</b></mat-label>
+          <br>
+          <mat-checkbox (click)="$event.preventDefault()" checked class="example-margin" [value]="product.size.id">{{product.size.size}}</mat-checkbox>
+        </div>
+        <div  class="price">
+          <span>{{product.sellPrice|currency:"VND":"symbol"}}</span>
+        </div>
+        <button *ngIf="product.quantity > 0" type="submit" >Thêm vào giỏ</button>
+        <button *ngIf="product.quantity <= 0" disabled title="Sản phẩm hiện tại đã hết" style="background-color: #dddddd; cursor: not-allowed">Sold out</button>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<section class="dishes" id="popular">
+
+  <h3 class="sub-heading"> Sản phẩm cho bạn </h3>
+  <h1 class="heading"> Sản phẩm cùng loại</h1>
+
+  <div class="box-container">
+
+    <div class="box" *ngFor="let p of listSameProduct">
+      <a routerLink="/details/{{p.id}}/{{p.category.id}}" (click)="loadDetailProduct(p.id,p.category.id)" class="fas fa-eye"></a>
+      <img [src]="'http://localhost:9999/img/'+p.img" [alt]="p.name">
+      <h3 class="line1-text">{{p.name}}</h3>
+      <h4 class="line1-text">{{p.description}}</h4>
+      <span>Giá: {{p.sellPrice | currency:"VND":"symbol"}}</span>
+      <a *ngIf="p.quantity > 0" (click)="addToCartP(p)" class="btn">Thêm vào giỏ</a>
+      <a *ngIf="p.quantity <=0"  matTooltip="Sản phẩm hiện tại đã hết"  class="btn" style="background-color: #dddddd; cursor: not-allowed">Sold out</a>
+    </div>
+
+
+  </div>
+
+</section>
+<app-footer></app-footer>

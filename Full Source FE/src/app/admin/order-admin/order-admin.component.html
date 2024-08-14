@@ -1,0 +1,165 @@
+
+
+<!-- Page Wrapper -->
+<div id="wrapper" class="">
+
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <app-topbar></app-topbar>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+          <h1 class="h3 mb-4 text-gray-800">Quản lý đơn hàng</h1>
+        </div>
+
+
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                <thead>
+                <tr>
+                  <th style="width: 5%">Mã đơn hàng</th>
+                  <th style="width: 5%">Mã tài khoản</th>
+                  <th style="width: 15%;">Tên</th>
+                  <th style="width: 10%;">Số điện thoại</th>
+                  <th style="width: 20%;">Địa chỉ</th>
+                  <th style="width: 10%;">Tổng tiền</th>
+                  <th style="width: 15%;">Thanh toán</th>
+                  <th style="width: 15%;">Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let o of listOrder" class="{{o.status.id == 4?'table-active':''}} {{o.status.id == 5?'table-danger':''}} {{o.status.id == 1?'table-warning':''}}">
+                  <td>{{o.id}}</td>
+                  <td>{{o.account.userId}}</td>
+                  <td>{{o.fullName}}</td>
+                  <td>{{o.phoneNumber}}</td>
+                  <td>{{o.address}}</td>
+                  <td>{{o.total | currency:"VND":"symbol"}}</td>
+                  <td>{{o.payment.name}}</td>
+                  <td>{{o.status.name}}</td>
+                  <td class="bg-white d-flex justify-content-center align-items-center">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" >
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+
+                      <button (click)="showDetailsOrder(o.id)" mat-menu-item >
+                        <mat-icon>info</mat-icon>
+                        <span>Chi tiết đơn hàng</span>
+                      </button>
+                      <button (click)="acceptOrder(o.id)" mat-menu-item *ngIf="o.status.id == 1">
+                        <mat-icon>check_circle</mat-icon>
+                        <span>Xác nhận đơn hàng</span>
+                      </button>
+                      <button (click)="shippingOrder(o.id)" mat-menu-item *ngIf="o.status.id == 2">
+                        <mat-icon>local_shipping</mat-icon>
+                        <span>Bắt đầu giao hàng</span>
+                      </button>
+                      <button (click)="deliveredOrder(o.id)"  mat-menu-item *ngIf="o.status.id == 3">
+                        <mat-icon>done_all </mat-icon>
+                        <span>Hoàn thành đơn hàng</span>
+                      </button>
+                      <button (click)="cancelOrder(o.id)"  mat-menu-item *ngIf="o.status.id < 4">
+                        <mat-icon>cancel</mat-icon>
+                        <span>Hủy đơn hàng</span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- end table -->
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" routerLink="/login">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Edit modal-->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form style="margin: 0" action="editProduct" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Product</h4>
+        </div>
+        <div class="modal-body">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success save-btn" >Save</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!--//-->
+
+
+<!--//-->
+
+
+

@@ -1,0 +1,92 @@
+<app-header></app-header>
+<!-- dishes section starts  -->
+<app-slider></app-slider>
+<section class="dishes" id="dishes">
+
+  <h3 class="sub-heading"> Sản phẩm cho bạn </h3>
+  <h1 class="heading"> Sản phẩm mới nhất </h1>
+
+  <div class="box-container">
+
+    <div class="box" *ngFor="let p of topProduct">
+      <a *ngIf="!checkProductExist(p.id)" (click)="addToFavoriteList(p.id)" class="fas fa-heart"></a>
+      <a *ngIf="checkProductExist(p.id)" (click)="removeProductInFavoriteList(p.id)" class="fas fa-heart " style="background-color: #27ae60"></a>
+      <a routerLink="/details/{{p.id}}/{{p.category.id}}" class="fas fa-eye"></a>
+      <img [src]="'http://localhost:9999/img/'+p.img" [alt]="p.name">
+      <h3 class="line1-text">{{p.name}}</h3>
+      <h4 class="line1-text">{{p.description}}</h4>
+      <span>Giá: {{p.sellPrice | currency:"VND":"symbol"}}</span>
+      <a *ngIf="p.quantity > 0" (click)="addToCart(p)" class="btn">Thêm vào giỏ</a>
+      <a *ngIf="p.quantity <=0"   class="btn" matTooltip="Sản phẩm hiện tại đã hết" style="background-color: #dddddd; cursor: not-allowed">Sold out</a>
+    </div>
+
+
+  </div>
+
+</section>
+
+<!-- dishes section ends -->
+
+
+<section class="dishes" id="popular">
+
+  <h3 class="sub-heading"> Sản phẩm cho bạn </h3>
+  <h1 class="heading"> Sản phẩm bán chạy nhất </h1>
+
+  <div class="box-container">
+
+    <div class="box" *ngFor="let p of popularProduct">
+      <a *ngIf="!checkProductExist(p.id)" (click)="addToFavoriteList(p.id)" class="fas fa-heart"></a>
+      <a *ngIf="checkProductExist(p.id)" (click)="removeProductInFavoriteList(p.id)" class="fas fa-heart " style="background-color: #27ae60"></a>
+      <a routerLink="/details/{{p.id}}/{{p.category.id}}" class="fas fa-eye"></a>
+      <img [src]="'http://localhost:9999/img/'+p.img" [alt]="p.name">
+      <h3 class="line1-text">{{p.name}}</h3>
+      <h4 class="line1-text">{{p.description}}</h4>
+      <span>Giá: {{p.sellPrice | currency:"VND":"symbol"}}</span>
+      <a *ngIf="p.quantity > 0" (click)="addToCart(p)" class="btn">Thêm vào giỏ</a>
+      <a *ngIf="p.quantity <=0"  matTooltip="Sản phẩm hiện tại đã hết"  class="btn" style="background-color: #dddddd; cursor: not-allowed">Sold out</a>
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+  <h3 class="sub-heading"> Nhận xét của khách hàng </h3>
+  <h1 class="heading"> Họ nói gì ? </h1>
+
+  <div class="swiper-container review-slider">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let cr of customerReviews">
+        <div class="swiper-slide slide">
+          <i class="fas fa-quote-right"></i>
+          <div class="user">
+            <img src="{{cr.img}}" alt="">
+            <div class="user-info">
+              <h3>{{cr.customerName}}</h3>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+          <p>{{cr.message}}</p>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+
+  </div>
+
+</section>
+
+<!-- review section ends -->
+<app-footer></app-footer>

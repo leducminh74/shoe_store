@@ -1,0 +1,47 @@
+<app-header></app-header>
+<section>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 ">
+        <div class="card">
+          <div class="text-center">
+            <h1>Đăng ký</h1>
+            <h6>Đăng kí tài khoản của bạn</h6>
+          </div>
+          <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <div class="text-center mb-0 mt-3">
+              <mat-error>{{message}}</mat-error>
+            </div>
+
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Tài khoản</mat-label>
+              <input matInput placeholder="Input here..." formControlName="username" required>
+              <mat-error *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('required','username')">Vui lòng nhập tài khoản</mat-error>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Email</mat-label>
+              <input matInput placeholder="Input here..." formControlName="email" required>
+              <mat-error *ngIf="signupForm.hasError('email','email') && !signupForm.hasError('required','email')">Vui lòng nhập đúng email</mat-error>
+              <mat-error *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">Vui lòng nhập email</mat-error>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Mật khẩu</mat-label>
+              <input [type]="showPassword ? 'text' : 'password'" matInput placeholder="Input here..." formControlName="password" required>
+              <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                {{showPassword?'visibility_off':'visibility'}}
+              </mat-icon>
+              <mat-error *ngIf="signupForm.hasError('minlength','password') && !signupForm.hasError('required','password')">Vui lòng nhập tối thiểu 3 kí tự</mat-error>
+              <mat-error *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">Vui lòng nhập mật khẩu</mat-error>
+            </mat-form-field>
+
+            <div class="text-center">
+              <button mat-raised-button type="submit" [disabled]="!signupForm.valid" class="btn">Đăng kí</button>
+            </div>
+          </form>
+          <a routerLink="/login" class="switch-link">Đã có tài khoản? Đăng nhập ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

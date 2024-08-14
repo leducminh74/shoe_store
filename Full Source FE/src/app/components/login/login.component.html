@@ -1,0 +1,42 @@
+<app-header></app-header>
+<section>
+  <div class="container mt-5 ">
+    <div class="row justify-content-center">
+      <div class="col-md-6 ">
+        <div class="card">
+          <div class="text-center">
+            <h1>Đăng nhập</h1>
+            <h6>Vui lòng nhập Tài khoản và mật khẩu</h6>
+          </div>
+          <form action="" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="text-center mb-0 mt-3">
+              <mat-error>{{message}}</mat-error>
+            </div>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Tài khoản</mat-label>
+              <input  matInput placeholder="Input here..." formControlName="username" required>
+              <mat-error *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')">Vui lòng nhập tài khoản</mat-error>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Mật khẩu</mat-label>
+              <input [type]="showPassword ? 'text' : 'password'" matInput placeholder="Input here..." formControlName="password" required>
+              <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                {{showPassword?'visibility_off':'visibility'}}
+              </mat-icon>
+              <mat-error *ngIf="loginForm.hasError('minlength','password') && !loginForm.hasError('required','password')">Vui lòng nhập tối thiểu 3 kí tự</mat-error>
+              <mat-error *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">Vui lòng nhập mật khẩu</mat-error>
+            </mat-form-field>
+
+            <div class="text-center">
+              <button type="submit" mat-raised-button [disabled]="!loginForm.valid" class="btn pointer-event">Đăng nhập</button>
+            </div>
+          </form>
+
+          <a  routerLink="/signup" class="switch-link">Chưa có tài khoản? Đăng ký ngay</a>
+          <a  routerLink="/forgot-password" class="switch-link">Quên mật khẩu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

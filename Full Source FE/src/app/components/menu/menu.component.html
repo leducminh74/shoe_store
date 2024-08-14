@@ -1,0 +1,86 @@
+<app-header></app-header>
+<app-slider></app-slider>
+<!-- menu section starts  -->
+
+<section class="menu" id="menu">
+
+  <h3 class="sub-heading"> Sản phẩm của chúng tôi </h3>
+  <h1 class="heading"> Danh sách sản phẩm </h1>
+
+  <form action="" method="post" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
+    <div class="search">
+      <input type="text"  formControlName="name" placeholder="Tìm sản phẩm" name="" id="">
+      <button type="submit" class="fas fa-search"></button>
+    </div>
+  </form>
+  <div class="tag">
+    <button class="btn-tag" (click)="onLoadAllProduct()">Tất cả</button>
+    <button *ngFor="let c of listCategory"
+            class="btn-tag"
+            (click)="onLoadFoodTag(c.id)">
+      {{c.name}}
+    </button>
+  </div>
+
+<div>
+  <mat-form-field style="width: 300px" appearance="outline" *ngIf="listFoods.length > 0 && keySearch.trim() == '' && !categoryProduct">
+    <mat-label>Sắp xếp sản phẩm</mat-label>
+    <mat-select (selectionChange)="sort($event)">
+      <mat-option value="1">Mặc định</mat-option>
+      <mat-option value="2">Sắp xếp theo tên (a-z)</mat-option>
+      <mat-option value="3">Sắp xếp theo tên (z-a)</mat-option>
+      <mat-option value="4">Sắp xếp theo giá tăng dần</mat-option>
+      <mat-option value="5">Sắp xếp theo giá giảm dần</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+  <div class="listFood-null" *ngIf="listFoods == null || listFoods.length == 0">
+    <span>Không có sản phẩm nào thỏa điều kiện!</span>
+  </div>
+
+  <div class="box-container" *ngIf="listFoods != null|| listFoods.length > 0">
+
+
+
+    <div class="box" *ngFor="let f of listFoods">
+      <div class="image">
+        <a routerLink="/details/{{f.id}}/{{f.category.id}}"><img  [src]="'http://localhost:9999/img/'+f.img" [alt]="f.name"></a>
+        <a *ngIf="!checkProductExist(f.id)" (click)="addToFavoriteList(f.id)" class="fas fa-heart"></a>
+        <a *ngIf="checkProductExist(f.id)" (click)="removeProductInFavoriteList(f.id)" class="fas fa-heart " style="background-color: #27ae60"></a>
+      </div>
+      <div class="content">
+        <h3 class="text-center line1-text">{{f.name}}</h3>
+        <p class="line1-text">{{f.description}}</p>
+        <div>
+          <mat-label style="font-size: larger"><b>Màu sắc: {{f.color.color}}</b></mat-label>
+        </div>
+        <div class="mt10">
+          <mat-label style="font-size: larger"><b>Size: {{f.size.size}}</b></mat-label>
+        </div>
+        <div class="mt10">
+          <span class="price">Giá: {{f.sellPrice|currency:"VND":"symbol"}}</span>
+        </div>
+        <button *ngIf="f.quantity > 0" style="width: 100%" (click)="addToCart(f)">Thêm vào giỏ</button>
+        <button *ngIf="f.quantity <=0" style="width: 100%;background-color: #dddddd; cursor: not-allowed" matTooltip="Sản phẩm hiện tại đã hết" >Sold out</button>
+
+      </div>
+    </div>
+
+  </div>
+  <div>
+    <mat-paginator
+      *ngIf="listFoods.length > 0 && keySearch.trim() == '' && !categoryProduct"
+      [length]="numberOfProduct"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[4, 8 , 22, 100]"
+      (page)="nextPage($event)"
+      aria-label="Select page">
+    </mat-paginator>
+  </div>
+
+</section>
+
+<!-- menu section ends -->
+<app-footer></app-footer>

@@ -1,0 +1,48 @@
+<app-header></app-header>
+<section>
+  <div class="container mt-5 ">
+    <div class="row justify-content-center">
+      <div class="col-md-6 ">
+        <div class="card">
+          <div class="text-center mb-4">
+            <h1>Thông tin tài khoản</h1>
+          </div>
+          <form *ngIf="profile" (ngSubmit)="updateProfile()">
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Tên đăng nhập</mat-label>
+              <input  matInput placeholder="Input here..." value="{{profile.acc.username}}" readonly="readonly" required>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Mã tài khoản</mat-label>
+              <input readonly="readonly"  matInput placeholder="Input here..." value="{{profile.acc.userId}}"  required>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Họ và tên</mat-label>
+              <input  matInput placeholder="Input here..." name="name"   [(ngModel)]="profile.name" >
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Địa chỉ</mat-label>
+              <input  matInput placeholder="Input here..." name="address"  [(ngModel)]="profile.address" >
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Số điện thoại</mat-label>
+              <input  matInput placeholder="Input here..." name="phoneNumber"  [(ngModel)]="profile.phoneNumber" >
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Vai trò</mat-label>
+              <input  matInput placeholder="Input here..." value="{{profile.acc.role.name}}" readonly="readonly"  required>
+            </mat-form-field>
+            <mat-form-field  class="full-width" appearance="outline" >
+              <mat-label >Trạng thái tài khoản</mat-label>
+              <input  matInput placeholder="Input here..." value="{{profile.acc.status.name}}" readonly="readonly" required>
+            </mat-form-field>
+            <div class="text-center">
+              <button type="submit" mat-raised-button class="btn pointer-event">Cập nhật</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

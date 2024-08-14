@@ -1,0 +1,33 @@
+table{
+  margin-bottom: 96px !important;
+  display: table;
+
+
+}
+
+.mt-118px{
+  margin-top: 96px;
+}
+
+.main-content{
+  min-height: 400px;
+}
+
+tr>td:nth-child(2){
+  text-align: left;
+  color: #3b3b3b;
+}
+
+.mat-menu-item{
+  text-align: center;
+  height: auto;
+  background-color: inherit;
+}
+.order-null btn:hover{
+
+}
+
+button:hover{
+  background-color: inherit;
+}
+

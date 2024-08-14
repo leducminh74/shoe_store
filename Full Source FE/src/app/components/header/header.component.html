@@ -1,0 +1,42 @@
+<header>
+  <a routerLink="/" class="logo"><i class="fas fa-utensils"></i>Box Shoe</a>
+
+  <nav class="navbar">
+    <a routerLink="/home" routerLinkActive="active">Trang chủ</a>
+    <a routerLink="/about" routerLinkActive="active">Về chúng tôi</a>
+    <a routerLink="/menu" routerLinkActive="active">Sản phẩm</a>
+    <a routerLink="/contact" routerLinkActive="active">Liên hệ</a>
+  </nav>
+
+  <div class="icons">
+    <i class="fas fa-bars" id="menu-bars"></i>
+    <a *ngIf="logedIn" [matMenuTriggerFor]="menu" class="fas fa-user-alt" ></a>
+    <mat-menu #menu="matMenu">
+      <button routerLink="" mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Xin chào {{username}}</span>
+      </button>
+      <button routerLink="/view-profile" mat-menu-item>
+        <mat-icon>info</mat-icon>
+        <span>Thông tin tài khoản</span>
+      </button>
+      <button routerLink="/order-history" mat-menu-item>
+        <mat-icon>history</mat-icon>
+        <span>Lịch sử đặt hàng</span>
+      </button>
+      <button routerLink="/favorite" mat-menu-item>
+        <mat-icon>favorite</mat-icon>
+        <span>Danh sách yêu thích</span>
+      </button>
+      <button routerLink="/change-password" mat-menu-item>
+        <mat-icon>lock</mat-icon>
+        <span>Đổi mật khẩu</span>
+      </button>
+    </mat-menu>
+    <a routerLink="/cart" class="fas fa-shopping-cart"></a>
+    <a *ngIf="!logedIn" routerLink="/login" class="fas fa-sign-in-alt" title="login"></a>
+    <a *ngIf="logedIn" (click)="logout()" routerLink="/login" class="fas fa-sign-out-alt" title="logout"></a>
+  </div>
+</header>
+
+
