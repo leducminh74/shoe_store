@@ -1,0 +1,41 @@
+<app-header></app-header>
+<app-slider></app-slider>
+<section>
+  <h3 class="sub-heading"> Details </h3>
+  <h1 class="heading"> {{food.name}} </h1>
+
+  <div class="container detail-page">
+    <img [src]="food.img" [alt]="food.name" >
+    <div class="details">
+      <div class="header">
+      <span class="name">
+          {{food.name}}
+      </span>
+      </div>
+      <div class="rating">
+        <star-rating
+          [value]="food.stars"
+          [totalstars]="5"
+          checkedcolor="green"
+          uncheckedcolor="black"
+          size="30px"
+          [readonly]="false">
+        </star-rating>
+      </div>
+      <div class="tag-f">
+        <span>{{food.type}}</span>
+      </div>
+      <div class="description">
+        <span>{{food.des}}</span>
+      </div>
+      <div class="cook-time">
+        <span>Món ăn sẽ hoàn thành trong khoản <strong>{{food.cookTime}}</strong></span>
+      </div>
+      <div class="price">
+        <span>{{food.sellPrice|currency:"VND":"symbol"}}</span>
+      </div>
+      <button (click)="addToCart()">Thêm vào giỏ</button>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

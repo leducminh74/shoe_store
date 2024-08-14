@@ -1,0 +1,60 @@
+<app-header></app-header>
+<section class="cart">
+  <div class="wrap cf">
+    <div class="heading cf">
+      <h1 >Giỏ hàng</h1>
+      <a routerLink="/menu" class="continue">Tiếp tục xem món</a>
+    </div>
+    <div class="cart-null" *ngIf="cart.items.length == 0">
+      <span>Giỏ hàng của bạn đang trống</span>
+      <a routerLink="/menu" class="btn">Đi đến menu</a>
+    </div>
+    <div class="cart-content" *ngIf="cart.items.length > 0">
+      <div class="cart">
+        <ul class="cartWrap">
+          <li class="items odd" *ngFor="let cartItem of cart.items">
+
+            <div class="infoWrap">
+              <div class="cartSection">
+                <img [src]="cartItem.food.img" [alt]="cartItem.food.name" class="itemImg"/>
+                <a routerLink="/details/{{cartItem.food.id}}" class="food-name">{{cartItem.food.name}}</a>
+              </div>
+
+              <div class="cartSection">
+                <p> <input #quantitySelect style="border: 1px solid #eee;width: 50px" type="number"  class="qty" min="1" max="100"  [value]="cartItem.quantity"  (keyup)="changeQuantity(cartItem,quantitySelect.value)" /> x {{cartItem.food.sellPrice|currency:"VND":"symbol"}}</p>
+              </div>
+              <div class="prodTotal cartSection">
+                <p>{{cartItem.price|currency:"VND":"symbol"}}</p>
+              </div>
+
+
+              <div class="cartSection removeWrap">
+                <button (click)="removeFromCart(cartItem)" class="remove">x</button>
+              </div>
+            </div>
+
+          </li>
+
+          <!--<li class="items even">Item 2</li>-->
+
+        </ul>
+      </div>
+
+      <div class="subtotal cf">
+        <ul>
+          <li class="totalRow"><span class="label">Tổng giá</span><span class="value">{{cart.totalPrice | currency:"VND":"symbol"}}</span></li>
+          <li class="totalRow"><span class="label">Phí ship</span><span class="value">0</span></li>
+          <li class="totalRow"><span class="label">Thuế</span><span class="value">0</span></li>
+          <li class="totalRow final"><span class="label">Tổng cộng</span><span class="value">{{cart.totalPrice | currency:"VND":"symbol"}}</span></li>
+          <li class="totalRow"><a routerLink="/order" class="btn continue btn-checkout">Thanh toán</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+<app-footer></app-footer>

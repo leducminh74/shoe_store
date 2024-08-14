@@ -1,0 +1,19 @@
+<header>
+  <a routerLink="/" class="logo"><i class="fas fa-utensils"></i>Box Lunch</a>
+
+  <nav class="navbar">
+    <a routerLink="/home" routerLinkActive="active">Trang chủ</a>
+    <a routerLink="/about" routerLinkActive="active">Về chúng tôi</a>
+    <a routerLink="/menu" routerLinkActive="active">Thực đơn</a>
+    <a routerLink="/contact" routerLinkActive="active">Liên hệ</a>
+  </nav>
+
+  <div class="icons">
+    <i class="fas fa-bars" id="menu-bars"></i>
+    <a routerLink="/cart" class="fas fa-shopping-cart"></a>
+    <a *ngIf="!logedIn" routerLink="/login" class="fas fa-sign-in-alt" title="Sign in"></a>
+    <a *ngIf="logedIn" (click)="logout()" routerLink="/login" class="fas fa-sign-out-alt" title="logout"></a>
+  </div>
+</header>
+
+

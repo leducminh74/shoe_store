@@ -1,0 +1,30 @@
+<app-header></app-header>
+<section>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 ">
+        <div class="card">
+          <div class="text-center">
+            <h1>Đăng nhập</h1>
+            <h6>Vui lòng nhập email và mật khẩu</h6>
+          </div>
+          <form action="" [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                <span class="text-danger mt-2 " *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')">Vui lòng nhập email</span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Mật khẩu</label>
+                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu">
+                <span class="text-danger mt-2" *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">Vui lòng nhập mật khẩu</span>
+              </div>
+              <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Đăng nhập</button>
+          </form>
+          <a routerLink="/signup" class="switch-link">Chưa có tài khoản? Đăng ký ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

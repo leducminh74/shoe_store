@@ -1,0 +1,142 @@
+
+
+<!-- Page Wrapper -->
+<div id="wrapper" class="">
+
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <app-topbar></app-topbar>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+          <h1 class="h3 mb-4 text-gray-800">Quản lý người dùng</h1>
+        </div>
+
+        <div class="mb-2 d-flex">
+          <a  class="btn btn-primary btn-icon-split" routerLink="add">
+              <span class="icon text-white-50">
+                  <i class="fas fa-plus"></i>
+              </span>
+            <span class="text">Thêm mới</span>
+          </a>
+        </div>
+
+
+        <!-- start table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                <thead>
+                <tr>
+                  <th style="width: 10%">Stt</th>
+                  <th style="width: 30%">Id</th>
+                  <th style="width: 45%;">email</th>
+                  <th style="width: 10%;">Vai trò</th>
+                  <th style="width: 30%">Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let user of listUser" >
+                  <td>Tig</td>
+                  <td>{{user.id}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.role}}</td>
+                  <td class="bg-white d-flex justify-content-center align-items-center">
+                    <button *ngIf="user.role == 1" (click)="setAdmin(user.id)" class="bg-dark" title="Set Admin">Admin</button>
+                    <button *ngIf="user.role == 0" (click)="setCustomer(user.id)" class="bg-danger" title="Set Admin">Customer</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- end table -->
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" routerLink="/login">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Edit modal-->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form style="margin: 0" action="editProduct" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Product</h4>
+        </div>
+        <div class="modal-body">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success save-btn" >Save</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!--//-->
+
+
+<!--//-->
+
+

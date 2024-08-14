@@ -1,0 +1,56 @@
+.card{
+  border: none;
+  width: 500px;
+  padding: 40px;
+  background: hsla(205,46%,30%,1);
+  background: linear-gradient(90deg,hsla(205,46%,30%,1) 0%, hsla(205,46%,30%,1) 100%);
+}
+
+.row{
+  margin: 118px 0 !important;
+}
+
+.card h1,
+h6{
+  color: #fff;
+}
+
+label{
+  color: #fff;
+}
+
+.card h1{
+  font-size: 3rem;
+}
+
+.card h6{
+  font-size: 1.7rem;
+}
+
+.card label{
+  font-size: 1.5rem;
+}
+
+.card input{
+  padding: 16px 8px;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.card .btn{
+  margin: 12px 0;
+  padding: 8px 12px;
+  width: auto;
+  font-size: 1.3rem;
+}
+
+.switch-link{
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.text-danger{
+  font-size: 1.4rem;
+}
+
+

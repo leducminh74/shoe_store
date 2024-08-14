@@ -1,0 +1,24 @@
+<section class="home" id="home">
+  <div class="swiper-container home-slider">
+
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let sl of sliders">
+        <div class="swiper-slide slide">
+          <div class="content">
+            <span>{{sl.title}}</span>
+            <h3>{{sl.name}}</h3>
+            <p>{{sl.des}}</p>
+            <a routerLink="/menu" class="btn">Đặt hàng ngay</a>
+          </div>
+          <div class="image">
+            <img src="{{sl.img}}" alt="">
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+
+    <div class="swiper-pagination"></div>
+
+  </div>
+
+</section>

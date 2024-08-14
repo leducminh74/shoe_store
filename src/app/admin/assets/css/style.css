@@ -1,0 +1,48 @@
+
+html{
+  font-size: 100% !important;
+}
+.table th, .table td {
+    text-align: center !important;
+    vertical-align: inherit !important;
+}
+.edit-icon{
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #3c9fd1;
+}
+
+.edit-icon:hover{
+    color: #7fc8e7;
+}
+
+.delete-icon{
+    font-size: 18px;
+    margin-left: 4px;
+    color: #ee5f5b;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.delete-icon:hover{
+    color: #f38598;
+}
+
+#addForm label,
+#editForm label{
+  font-size: 16px;
+}
+
+#addForm input,
+#editForm input{
+  font-size: 13px;
+}
+
+#addForm button,
+#editForm button{
+  width: auto;
+  padding: 8px 36px;
+
+}

@@ -1,0 +1,72 @@
+<app-header></app-header>
+<!-- dishes section starts  -->
+<app-slider></app-slider>
+<section class="dishes" id="dishes">
+
+  <h3 class="sub-heading"> Món ăn cho bạn </h3>
+  <h1 class="heading"> Món ăn phổ biến </h1>
+
+  <div class="box-container">
+
+    <div class="box" *ngFor="let p of topProduct">
+      <a  class="fas fa-heart"></a>
+      <a routerLink="/details/{{p.id}}" class="fas fa-eye"></a>
+      <img [src]="p.img" [alt]="p.name">
+      <h3>{{p.name}}</h3>
+      <star-rating
+        [value]="p.stars"
+        [totalstars]="5"
+        checkedcolor="green"
+        uncheckedcolor="black"
+        size="24px"
+        [readonly]="true">
+      </star-rating>
+      <span>{{p.sellPrice | currency:"VND":"symbol"}}</span>
+      <a (click)="addToCart(p)" class="btn">Thêm vào giỏ</a>
+    </div>
+
+
+  </div>
+
+</section>
+
+<!-- dishes section ends -->
+
+
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+  <h3 class="sub-heading"> Nhận xét của khách hàng </h3>
+  <h1 class="heading"> Họ nói gì ? </h1>
+
+  <div class="swiper-container review-slider">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let cr of customerReviews">
+      <div class="swiper-slide slide">
+        <i class="fas fa-quote-right"></i>
+        <div class="user">
+          <img src="{{cr.img}}" alt="">
+          <div class="user-info">
+            <h3>{{cr.customerName}}</h3>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+        <p>{{cr.message}}</p>
+      </div>
+      </ng-template>
+    </owl-carousel-o>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+<app-footer></app-footer>

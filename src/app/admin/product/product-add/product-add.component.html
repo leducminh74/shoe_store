@@ -1,0 +1,158 @@
+
+<!-- Page Wrapper -->
+<div id="wrapper" class="">
+
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <app-topbar></app-topbar>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+
+        <div class="container d-flex justify-content-center w-50 mt-5 p-5">
+          <form style="margin: 0" action="" method="post" id="addForm" class="p-5" [formGroup]="proFormAdd" (ngSubmit)="onSubmit()">
+            <h4 class="title text-center">Thêm món ăn</h4>
+            <div class="form-group">
+              <label  for="productName"><Strong>Tên</Strong></label>
+              <input type="text" name="productName" class="form-control p-4" id="productName" formControlName="name"  placeholder="Nhập tên món ăn">
+              <div class="ml-2" *ngIf="submited && f.name.errors">
+                <span class="text-danger" *ngIf="f.name.errors">Vui lòng nhập tên món ăn</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="genderProduct"><Strong>Xuất xứ</Strong></label>
+              <input type="text" name="gender" class="form-control p-4" id="genderProduct" formControlName="origin" placeholder="Nhập xuất xứ">
+              <div class="ml-2" *ngIf="submited && f.origin.errors">
+                <span class="text-danger" *ngIf="f.origin.errors">Vui lòng nhập xuất xứ</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productOrigin"><Strong>Thời gian nấu</Strong></label>
+              <input type="text" name="productOrigin" class="form-control p-4" id="productOrigin" formControlName="cookTime" placeholder="Nhập thời gian nấu">
+              <div class="ml-2" *ngIf="submited && f.cookTime.errors">
+                <span class="text-danger" *ngIf="f.cookTime.errors">Vui lòng nhập thời gian nấu</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productConcentration"><Strong>Ảnh</Strong></label>
+              <input type="text" name="productConcentration" class="form-control p-4" id="productConcentration" formControlName="img" placeholder="Nhập ảnh">
+              <div class="ml-2" *ngIf="submited && f.img.errors">
+                <span class="text-danger" *ngIf="f.img.errors">Vui lòng nhập link ảnh</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productCapacity"><Strong>Mô tả</Strong></label>
+              <input type="text" name="productCapacity" class="form-control p-4" id="productCapacity" formControlName="des" placeholder="Nhập mô tả">
+              <div class="ml-2" *ngIf="submited && f.des.errors">
+                <span class="text-danger" *ngIf="f.des.errors">Vui lòng nhập mô tả</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productDescription"><Strong>Giá</Strong></label>
+              <input type="text" name="productDescription" class="form-control p-4" id="productDescription" formControlName="price" placeholder="Nhập giá">
+              <div class="ml-2" *ngIf="submited && f.price.errors">
+                <span class="text-danger" *ngIf="f.price.errors">Vui lòng nhập giá</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productPrice"><Strong>Giá khuyến mãi</Strong></label>
+              <input type="text" name="productPrice" class="form-control p-4" id="productPrice" formControlName="sellPrice" placeholder="Nhập giá khuyến mãi">
+              <div class="ml-2" *ngIf="submited && f.sellPrice.errors">
+                <span class="text-danger" *ngIf="f.sellPrice.errors">Vui lòng nhập giá khuyến mãi</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="typeProduct"><Strong>Loại</Strong></label>
+              <select name="" id="typeProduct" class="form-control" formControlName="type">
+                <option *ngFor="let tag of listTag" value="{{tag.tagId}}">{{tag.tagName}}</option>
+              </select>
+              <div class="ml-2" *ngIf="submited && f.type.errors">
+                <span class="text-danger" *ngIf="f.type.errors">Vui lòng nhập loại thức ăn</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-success mt-3" >Thêm</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" routerLink="/login">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Edit modal-->
+<div id="editProductModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form style="margin: 0" action="editProduct" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Product</h4>
+        </div>
+        <div class="modal-body">
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success save-btn" >Save</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<!--//-->
+
+
+
+

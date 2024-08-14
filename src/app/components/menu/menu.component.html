@@ -1,0 +1,60 @@
+<app-header></app-header>
+<app-slider></app-slider>
+<!-- menu section starts  -->
+
+<section class="menu" id="menu">
+
+  <h3 class="sub-heading"> Thực đơn của chúng tôi </h3>
+  <h1 class="heading"> Món ăn hôm nay </h1>
+
+  <form action="" method="post" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
+    <div class="search">
+      <input type="text"  formControlName="name" placeholder="Tìm món ăn" name="" id="">
+      <button type="submit" class="fas fa-search"></button>
+    </div>
+  </form>
+  <div class="tag">
+    <button *ngFor="let tag of listTag"
+            class="btn-tag"
+            (click)="onLoadFoodTag(tag.tagId)">
+      {{tag.tagName}}
+    </button>
+  </div>
+
+  <div class="listFood-null" *ngIf="listFoods.length == 0">
+    <span>Không có món ăn nào thỏa điều kiện!</span>
+  </div>
+
+  <div class="box-container" *ngIf="listFoods.length > 0">
+
+    <div class="box" *ngFor="let f of listFoods">
+      <div class="image">
+        <a routerLink="/details/{{f.id}}"><img [src]="f.img" [alt]="f.name"></a>
+        <a class="fas fa-heart {{f.favorite ?'favorite':''}}"></a>
+      </div>
+      <div class="content">
+        <star-rating
+          [value]="f.stars"
+          [totalstars]="5"
+          checkedcolor="green"
+          uncheckedcolor="black"
+          size="24px"
+          [readonly]="true">
+        </star-rating>
+        <h3>{{f.name}}</h3>
+        <p>{{f.des}}</p>
+        <div class="clock-time">
+          <span>🕒</span>
+          {{f.cookTime}}
+        </div>
+        <span class="price">{{f.sellPrice|currency:"VND":"symbol"}}</span>
+        <button style="width: auto" (click)="addToCart(f)">Thêm vào giỏ</button>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- menu section ends -->
+<app-footer></app-footer>

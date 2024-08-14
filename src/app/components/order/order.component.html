@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="order">
+  <div class="container">
+    <div class="title">
+      <h2>Thủ tục thanh toán</h2>
+    </div>
+    <div class="d-flex">
+      <form action="" method="" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="d-flex">
+        <div class="form-input" style="width: 60%">
+          <label>
+            <span class="fname">Họ và tên <span class="required">*</span></span>
+            <input formControlName="name"  type="text" name="fname" placeholder="Nhập họ và tên">
+            <div class="ml-2" *ngIf="submited && f.name.errors">
+              <span style="color: #bd2130;margin-left: 120px" class="text-danger" *ngIf="f.name.errors">Vui lòng nhập họ và tên</span>
+            </div>
+          </label>
+          <label>
+            <span>Địa chỉ <span class="required">*</span></span>
+            <input formControlName="address" type="text" name="houseadd" placeholder="Nhập địa chỉ" required>
+            <div class="ml-2" *ngIf="submited && f.address.errors">
+              <span style="color: #bd2130; margin-left: 120px" class="text-danger" *ngIf="f.address.errors">Vui lòng nhập địa chỉ</span>
+            </div>
+          </label>
+          <label>
+            <span>Số điện thoại <span class="required">*</span></span>
+            <input formControlName="phone" type="tel" name="city" placeholder="Nhập số điện thoại">
+            <div class="ml-2" *ngIf="submited && f.phone.errors">
+              <span style="color: #bd2130;margin-left: 120px" class="text-danger" *ngIf="f.phone.errors">Vui lòng nhập số điện thoại</span>
+            </div>
+          </label>
+          <label>
+            <span>Địa chỉ email <span class="required">*</span></span>
+            <input formControlName="email" type="email" name="city" placeholder="Nhập địa chỉ email">
+            <div class="ml-2" *ngIf="submited && f.email.errors">
+              <span style="color: #bd2130;margin-left: 120px" class="text-danger ml-5" *ngIf="f.email.errors">Vui lòng nhập địa chỉ email</span>
+            </div>
+          </label>
+        </div>
+      <div class="Yorder">
+        <table>
+          <tr>
+            <th colspan="4">Đơn hàng của bạn</th>
+          </tr>
+          <tr *ngFor="let item of cart.items">
+            <td>{{item.food.name}}</td>
+            <td><img style="width: 40px" [src]="item.food.img" [alt]="item.food.name"></td>
+            <td>x{{item.quantity}}</td>
+            <td>{{item.price | currency:"VND":"symbol"}}</td>
+          </tr>
+          <tr>
+            <td>Tổng giá</td>
+            <td></td>
+            <td></td>
+            <td>{{cart.totalPrice | currency:"VND":"symbol"}}</td>
+          </tr>
+          <tr>
+            <td>Vận chuyển</td>
+            <td></td>
+            <td></td>
+            <td>Miễn phí vận chuyển</td>
+          </tr>
+        </table><br>
+
+        <div>
+          <input type="radio" name="dbt" value="cd"> Thanh toán khi nhận hàng
+        </div>
+
+        <button  type="submit">Đặt hàng</button>
+      </div><!-- Yorder -->
+      </form>
+
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
